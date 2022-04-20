@@ -1205,6 +1205,7 @@ const extendEnum = (enumerators, definition) => {
     }));
 };
 
+//
 const getEnum = (values) => {
     if (Array.isArray(values)) {
         return values
@@ -1221,12 +1222,14 @@ const getEnum = (values) => {
                     description: null,
                 };
             }
+            const name = String(value)
+                .replace(/'/g, '')
+                .replace(/-/g, '_')
+                .replace(/^(\d+)/g, '_$1')
+                .replace(/([a-z])([A-Z]+)/g, '$1_$2')
+                .toUpperCase();
             return {
-                name: String(value)
-                    .replace(/\W+/g, '_')
-                    .replace(/^(\d+)/g, '_$1')
-                    .replace(/([a-z])([A-Z]+)/g, '$1_$2')
-                    .toUpperCase(),
+                name: name.match(/\W+/g) ? `'${name}'` : name,
                 value: `'${value.replace(/'/g, "\\'")}'`,
                 type: 'string',
                 description: null,
