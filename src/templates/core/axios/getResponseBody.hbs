@@ -1,0 +1,16 @@
+const getResponseBody = async (response: AxiosResponse<any>): Promise<any> => {
+	if (response.data) {
+		// Axios will not auto-convert the error response for requests with
+		// responseType set to something other than "json".
+		if (isBlob(response.data) && response.data.type === 'application/json') {
+			try {
+				return JSON.parse(await response.data.text());
+			} catch {
+				// guess it wasn't actually json...
+			}
+		}
+
+		return response.data;
+	}
+	return;
+};
