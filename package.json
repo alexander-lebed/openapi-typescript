@@ -71,7 +71,7 @@
     "devDependencies": {
         "@angular-devkit/build-angular": "13.2.5",
         "@angular/animations": "13.2.4",
-        "@angular/cli": "13.2.5",
+        "@angular/cli": "13.3.4",
         "@angular/common": "13.2.4",
         "@angular/compiler": "13.2.4",
         "@angular/compiler-cli": "13.2.4",
